@@ -16,16 +16,16 @@ BobRoss_Data <- read.csv(here("Week_01", "Data", "bob_ross.csv"))
 View(BobRoss_Data)
 
 BobRoss_Data %>%
-  group_by(painting_index, painting_title, num_colors, season) %>%
-  filter(season == 1 | season == 2 | season == 3) %>%
+  group_by(painting_index, painting_title, num_colors, season) %>%  # Grouping the data by the painting title, index, number of colors, and season
+  filter(season == 1 | season == 2 | season == 3) %>%               # Filtering the data by the first three seasons
   ggplot(aes(x = painting_title,
              y = num_colors,
-             fill = season))+
-  scale_y_continuous(pretty_breaks)+
-  labs( x = "Name of Painting",
+             color = season))+
+  labs( x = "Name of Painting",                                     # Adds pretty titles to the x-axis, y-axis, title, subtitle, and legend
         y = "Number of Colors Used",
         title = "Number of Colors Used in Bob Ross Paintings",
-        subtitle = "Season 1-3")+
+        subtitle = "Seasons 1-3",
+        color = "Season")+
   theme_bw()+
   theme(axis.title = element_text(size = 14, 
                                   color = "black"),
@@ -35,19 +35,20 @@ BobRoss_Data %>%
                                   hjust = 0.5),
         plot.subtitle = element_text(size = 14, 
                                      color = "black", 
-                                     hjust = 0.05),
+                                     hjust = 0.18,
+                                     face = "italic"),
         axis.text.x = element_text(size = 10,
                                    color = "black"),
         axis.text.y = element_text(size = 10,
                                    color = "black",
-                                   face = "italic"))+
-  geom_segment( aes(x=painting_title ,
+                                   face = "italic"))+    # Changes the size, color, face and adjustment of the plot titles.
+  geom_segment(aes(x=painting_title ,                   # Changes the bar plot sections to a small stick segment.
                     xend = painting_title, 
                     y=0, 
                     yend = num_colors), 
-                color="black") +
-  geom_point(size=3) +
-  coord_flip() 
+                    color="black") +                    # Colors the segment black
+  geom_point(size=4) +                                  # Changes size of the points on the plot
+  coord_flip()                                          # Flips the coordinate plane
 
 ggsave(here("Week_01", "Output", "BobRoss_Colors.png"),
        width = 10, height = 10)
