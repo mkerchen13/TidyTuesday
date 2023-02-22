@@ -27,8 +27,9 @@ BobRoss_Data %>%
         subtitle = "Seasons 1-3",
         color = "Season")+
   theme_bw()+
-  theme(axis.title = element_text(size = 14, 
+  theme(axis.title = element_text(size = 14,          # Changes the size, color, face and adjustment of the plot titles.
                                   color = "black"),
+        axis.title.x = element_text(vjust = -0.5),    # Moves the x-axis away from the tick marks
         plot.title = element_text(size = 16, 
                                   color = "black", 
                                   face = "bold", 
@@ -41,14 +42,14 @@ BobRoss_Data %>%
                                    color = "black"),
         axis.text.y = element_text(size = 10,
                                    color = "black",
-                                   face = "italic"))+    # Changes the size, color, face and adjustment of the plot titles.
+                                   face = "italic"))+   # Italicizes the painting names
   geom_segment(aes(x=painting_title ,                   # Changes the bar plot sections to a small stick segment.
                     xend = painting_title, 
                     y=0, 
                     yend = num_colors), 
-                    color="black") +                    # Colors the segment black
-  geom_point(size=4) +                                  # Changes size of the points on the plot
-  coord_flip()                                          # Flips the coordinate plane
+                    color="black") +          # Colors the segment black
+  geom_point(size=4) +                        # Changes size of the points on the plot
+  coord_flip()             # Flips the coordinate plane
 
 ggsave(here("Week_01", "Output", "BobRoss_Colors.png"),
        width = 10, height = 10)
