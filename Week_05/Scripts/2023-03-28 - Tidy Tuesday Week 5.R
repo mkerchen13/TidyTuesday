@@ -48,3 +48,4 @@ Colony_Data_States %>%
 #### Saving the Plot/Animation ####
 
 anim_save(here("Week_05", "Output", "BeeColonyLosses.gif"))
+# Saves animation asa .gif to my output folder
